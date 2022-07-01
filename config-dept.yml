@@ -1,0 +1,67 @@
+spring:
+  profiles:
+    active: dev
+---
+server:
+  port: 8001
+mybatis:
+  type-aliases-package: com.yzj.springcloud.pojo
+  #  config-location: classpath:mybatis/mapper/*.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+spring:
+  profiles: dev
+  application:
+    name: springcloud-config-dept
+  datasource:
+    type: com.mysql.cj.jdbc.MysqlDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db01
+    username: root
+    password: jj2002114
+
+#Eureka的配置,服务注册到哪里
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: springcloud-provider-dept-8001 #修改Eureka的默认描述消息
+    prefer-ip-address: true #显示服务的ip地址
+
+#info配置
+info:
+  app.name: yzj-springcloud
+  company.name: blog.yzj.com
+---
+server:
+  port: 8001
+mybatis:
+  type-aliases-package: com.yzj.springcloud.pojo
+  #  config-location: classpath:mybatis/mapper/*.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+spring:
+  profiles: test
+  application:
+    name: springcloud-config-dept
+  datasource:
+    type: com.mysql.cj.jdbc.MysqlDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db02
+    username: root
+    password: jj2002114
+
+#Eureka的配置,服务注册到哪里
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: springcloud-provider-dept-8001 #修改Eureka的默认描述消息
+    prefer-ip-address: true #显示服务的ip地址
+
+#info配置
+info:
+  app.name: yzj-springcloud
+  company.name: blog.yzj.com
